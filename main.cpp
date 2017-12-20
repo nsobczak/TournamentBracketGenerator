@@ -1,17 +1,13 @@
 #include <iostream>
+//using namespace std;
 
+#include "Hello.h"
 
-class Hello {
-//    int width, height;
-public:
-
-    void sayHello() {
-        std::cout << "Hello, World!" << std::endl;
-    }
-};
 
 int main() {
     Hello hello;
     hello.sayHello();
+    Hello hello2("fearless");
+    hello2.sayHello();
     return 0;
 }
