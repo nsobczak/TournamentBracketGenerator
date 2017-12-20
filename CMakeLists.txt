@@ -3,4 +3,4 @@ project(TournamentBracketGenerator)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(TournamentBracketGenerator main.cpp Hello.cpp Hello.h)
+add_executable(TournamentBracketGenerator main.cpp Hello.cpp Hello.h Tournament_SingleElimination.cpp Tournament_SingleElimination.h)

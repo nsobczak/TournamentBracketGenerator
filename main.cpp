@@ -2,12 +2,15 @@
 //using namespace std;
 
 #include "Hello.h"
+#include "Tournament_SingleElimination.h"
 
 
-int main() {
-    Hello hello;
-    hello.sayHello();
-    Hello hello2("fearless");
-    hello2.sayHello();
+//____________________________________________________________
+
+int main()
+{
+//    Hello::Test_HelloClass();
+    Tournament_SingleElimination::Test_Tournament_SingleEliminationClass();
+
     return 0;
 }

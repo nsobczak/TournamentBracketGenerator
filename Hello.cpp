@@ -5,25 +5,50 @@
 #include "Hello.h"
 
 
+//____________________________________________________________
 /**
  * \fn
- * \brief
+ * \brief constructor
  */
-Hello::Hello() {
+Hello::Hello()
+{
     this->nature = "civilized";
 };
 
 
-Hello::Hello(std::string
-             newNature) {
+/**
+ * \fn
+ * \brief constructor
+ */
+Hello::Hello(std::string newNature)
+{
     this->
             nature = newNature;
 };
 
 
-void Hello::sayHello() {
+//____________________________________________________________
+
+/**
+ * \fn
+ * \brief
+ */
+void Hello::sayHello()
+{
     if (this->nature == "civilized")
         std::cout << "Hello, World!" << std::endl;
     else
         std::cout << "Hi!" << std::endl;
+}
+
+
+//____________________________________________________________
+
+void Hello::Test_HelloClass()
+{
+    Hello hello;
+    hello.sayHello();
+
+    Hello hello2("fearless");
+    hello2.sayHello();
 }

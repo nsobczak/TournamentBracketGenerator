@@ -7,14 +7,19 @@
 
 #include <iostream>
 
-class Hello {
+class Hello
+{
     std::string nature;
+
+private:
+    void sayHello();
+
 public:
     Hello();
 
     Hello(std::string newNature);
 
-    void sayHello();
+    static void Test_HelloClass();
 };
 
 
