@@ -6,22 +6,28 @@
 #define TOURNAMENTBRACKETGENERATOR_TOURNAMENT_SINGLEELIMINATION_H
 
 #include <iostream>
+#include "Match.h"
 
-class Tournament_SingleElimination
+class TournamentSingleElimination
 {
 private:
     int playerNumber;
     bool isPlayerNumberOptimal;
 
-    static void Test_IsPlayerNumberOptimal();
+    //tests
+    static bool Test_IsPlayerNumberOptimal();
 
 public:
-    Tournament_SingleElimination(int newPlayerNumber);
+    TournamentSingleElimination(int newPlayerNumber);
 
     bool getIsPlayerNumberOptimal() const;
 
     void setIsPlayerNumberOptimal(bool isPlayerNumberOptimal);
 
+    //methods
+    void generateTournament();
+
+    //tests
     static bool IsPlayerNumberOptimal(int playerNumber);
 
     static void Test_Tournament_SingleEliminationClass();

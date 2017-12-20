@@ -2,7 +2,7 @@
 //using namespace std;
 
 #include "Hello.h"
-#include "Tournament_SingleElimination.h"
+#include "TournamentSingleElimination.h"
 
 
 //____________________________________________________________
@@ -10,7 +10,9 @@
 int main()
 {
 //    Hello::Test_HelloClass();
-    Tournament_SingleElimination::Test_Tournament_SingleEliminationClass();
+    TournamentSingleElimination::Test_Tournament_SingleEliminationClass();
+
+    Match::Test_MatchClass();
 
     return 0;
 }
