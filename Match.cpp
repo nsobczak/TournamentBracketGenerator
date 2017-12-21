@@ -77,23 +77,23 @@ bool Match::Test_computeWinner()
     matchA.points_competitorB += 2;
     matchA.computeWinner();
 
-    Competitor p3, p4;
+    Competitor p3("p3"), p4("p4");
     Match matchB = Match(p3, p4);
     matchB.points_competitorA += 2;
     matchB.computeWinner();
 
-    Competitor p5, p6;
+    Competitor p5("p5"), p6("p6");
     Match matchC = Match(p5, p6);
     matchC.points_competitorA += 1;
-    matchA.points_competitorB += 1;
+    matchC.points_competitorB += 1;
     matchC.computeWinner();
 
-    //TODO: initialize pseudo
-    //TODO: test matchC
     if (matchA.winner.getPseudo() == matchA.competitorB.getPseudo() &&
-        matchA.winner.getPseudo() != matchA.competitorA.getPseudo() &&
         matchB.winner.getPseudo() == matchB.competitorA.getPseudo() &&
-        matchB.winner.getPseudo() != matchB.competitorB.getPseudo())
+        matchB.winner.getPseudo() != matchB.competitorB.getPseudo() &&
+        matchC.winner.getPseudo() != matchC.competitorA.getPseudo() &&
+        matchC.winner.getPseudo() != matchC.competitorB.getPseudo() &&
+        matchC.winner.getPseudo() == "")
         return true;
     else
         return false;
