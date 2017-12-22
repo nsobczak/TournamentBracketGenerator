@@ -10,6 +10,6 @@
 #include <memory>
 
 // procedure qui compare le contenu de 2 tableaux
-bool compare_tabs(const std::unique_ptr<int[]> *, const std::unique_ptr<int[]> *, int);
+bool compare_tabs(int *, int *, int);
 
 #endif //TOURNAMENTBRACKETGENERATOR_TABLIBRAY_H

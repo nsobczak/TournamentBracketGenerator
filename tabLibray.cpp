@@ -10,7 +10,7 @@
  * \param 2 tableaux
  * \param 1 entier : la taille des tableaux
  */
-bool compare_tabs(const std::unique_ptr<int[]> *pa, const std::unique_ptr<int[]> *pb, int size)
+bool compare_tabs(int *pa, int *pb, int size)
 {
     int i;
     bool result = true;

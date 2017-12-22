@@ -120,9 +120,9 @@ void TournamentSingleElimination::Test_generateTournament()
     TournamentSingleElimination tournament1(9);
     TournamentSingleElimination tournament1ref(9);
     tournament1.generateTournament();
-    //TODO:
+    //TODO: finish this part
     std::cout << "\ntournament1 == tournament1ref : "
-              << (compare_tabs(tournament1.getPlayersIdArray(), tournament1ref.getPlayersIdArray(),
+              << (compare_tabs(tournament1.getPlayersIdArray().get(), tournament1ref.getPlayersIdArray().get(),
                                tournament1.getPlayerNumber()))
               << std::endl;;
 
