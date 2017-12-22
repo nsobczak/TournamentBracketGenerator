@@ -70,7 +70,7 @@ void Match::computeWinner()
 
 bool Match::Test_computeWinner()
 {
-    std::cout << "\n\n=== Test_computeWinner ===" << std::endl;
+    std::cout << "\n=== Test_computeWinner ===" << std::endl;
 
     Competitor p1, p2;
     Match matchA = Match(p1, p2);
@@ -102,9 +102,9 @@ bool Match::Test_computeWinner()
 
 void Match::Test_MatchClass()
 {
-    std::cout << "\n======================" << std::endl
+    std::cout << "\n||=================||" << std::endl
               << "|| Test_MatchClass ||" << std::endl
-              << "======================" << std::endl;
+              << "||=================||" << std::endl;
 
     std::cout << (Test_computeWinner() == 1) << std::endl;
 

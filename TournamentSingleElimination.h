@@ -7,7 +7,9 @@
 
 #include <iostream>
 #include <memory>
+#include <algorithm>
 #include "Match.h"
+#include "tabLibray.h"
 
 
 /**
@@ -27,21 +29,27 @@ private:
 public:
     TournamentSingleElimination(int newPlayerNumber);
 
+    int getPlayerNumber() const;
+
     bool getIsPlayerNumberOptimal() const;
 
     void setIsPlayerNumberOptimal(bool isPlayerNumberOptimal);
 
+    const std::unique_ptr<int[]> &getPlayersIdArray() const;
+
     //methods
     void generateTournament();
 
-    void printarray();
+    void printArray();
 
     //tests
     static bool IsPlayerNumberOptimal(int playerNumber);
 
-    static void Test_printarray();
+    static void Test_printArray();
 
-    static void Test_Tournament_SingleEliminationClass();
+    static void Test_generateTournament();
+
+    static void Test_TournamentSingleEliminationClass();
 };
 
 

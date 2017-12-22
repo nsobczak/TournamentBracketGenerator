@@ -13,7 +13,7 @@ int main()
 
     Match::Test_MatchClass();
 
-    TournamentSingleElimination::Test_Tournament_SingleEliminationClass();
+    TournamentSingleElimination::Test_TournamentSingleEliminationClass();
 
     return 0;
 }
