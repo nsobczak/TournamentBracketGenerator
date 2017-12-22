@@ -7,11 +7,16 @@
 
 #include <iostream>
 
+/**
+ * \class Competitor
+ * \brief competitor class, a pseudo, its points count
+ */
 class Competitor
 {
 private:
     std::string pseudo;
     int points;
+//    int index;
 
 public:
 

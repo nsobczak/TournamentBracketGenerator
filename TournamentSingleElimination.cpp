@@ -26,11 +26,25 @@ bool TournamentSingleElimination::IsPlayerNumberOptimal(int playerNumber)
 
 //____________________________________________________________
 
-TournamentSingleElimination::TournamentSingleElimination(int newPlayerNumber) : playerNumber(newPlayerNumber)
+TournamentSingleElimination::TournamentSingleElimination(int newPlayerNumber) : playerNumber{newPlayerNumber},
+                                                                                playersIdArray{new int[newPlayerNumber]}
 {
     this->isPlayerNumberOptimal = IsPlayerNumberOptimal(newPlayerNumber);
+    for (int i = 0; i < this->playerNumber; i++)
+    {
+        this->playersIdArray[i] = i;
+    }
 }
 
+
+//Classy::Classy(int parraysize)
+//        : arraysize{parraysize}, playersIdArray{new int[arraysize]}
+//{
+//    for (int i = 0; i < arraysize; i++)
+//    {
+//        playersIdArray[i] = i * i * 2;
+//    }
+//}
 
 //____________________________________________________________
 
@@ -47,6 +61,15 @@ void TournamentSingleElimination::setIsPlayerNumberOptimal(bool isPlayerNumberOp
 
 
 //____________________________________________________________
+
+void TournamentSingleElimination::printarray()
+{
+    std::cout << "|";
+    for (int i = 0; i < this->playerNumber; i++)
+        std::cout << "|" << playersIdArray[i];
+    std::cout << "||" << std::endl;
+}
+
 
 void TournamentSingleElimination::generateTournament()
 {
@@ -78,6 +101,14 @@ bool TournamentSingleElimination::Test_IsPlayerNumberOptimal()
 }
 
 
+void TournamentSingleElimination::Test_printarray()
+{
+    std::cout << "\n\n=== printarray ===" << std::endl;
+    TournamentSingleElimination tournamentSingleElimination(9);
+    tournamentSingleElimination.printarray();
+}
+
+
 void TournamentSingleElimination::Test_Tournament_SingleEliminationClass()
 {
     std::cout << "\n===========================================" << std::endl
@@ -86,4 +117,5 @@ void TournamentSingleElimination::Test_Tournament_SingleEliminationClass()
 
     std::cout << (Test_IsPlayerNumberOptimal() == 1) << std::endl;
 
+    Test_printarray();
 }

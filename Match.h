@@ -8,6 +8,10 @@
 #include <iostream>
 #include "Competitor.h"
 
+/**
+ * \class Match
+ * \brief match class, 2 players, their scores, 1 winner
+ */
 class Match
 {
 
