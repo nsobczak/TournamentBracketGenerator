@@ -9,7 +9,11 @@
 #include <iostream>
 #include <memory>
 
-// procedure qui compare le contenu de 2 tableaux
-bool compare_tabs(int *, int *, int);
+namespace tabLibrary
+{
+    // compare 2 tab
+    bool compare_tabs(int *, int *, int);
+}
+
 
 #endif //TOURNAMENTBRACKETGENERATOR_TABLIBRAY_H

@@ -122,14 +122,14 @@ void TournamentSingleElimination::Test_generateTournament()
     TournamentSingleElimination tournament1(9);
     TournamentSingleElimination tournament1ref(9);
     tournament1.generateTournament();
-    test1 = compare_tabs(tournament1.getPlayersIdArray().get(), tournament1ref.getPlayersIdArray().get(),
+    test1 = tabLibrary::compare_tabs(tournament1.getPlayersIdArray().get(), tournament1ref.getPlayersIdArray().get(),
                          tournament1.getPlayerNumber()) == 1;
 //    std::cout << "test1: " << (test1 == 1) << std::endl;;
 
     TournamentSingleElimination tournament2(8);
     TournamentSingleElimination tournament2ref(8);
     tournament2.generateTournament();
-    test2 = compare_tabs(tournament2.getPlayersIdArray().get(), tournament2ref.getPlayersIdArray().get(),
+    test2 = tabLibrary::compare_tabs(tournament2.getPlayersIdArray().get(), tournament2ref.getPlayersIdArray().get(),
                          tournament2.getPlayerNumber()) == 0;
 //    std::cout << "test2: " << (test2 == 0) << std::endl;
 //    tournament2.printArray();

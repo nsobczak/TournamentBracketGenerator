@@ -6,11 +6,11 @@
 
 
 /**
- * \brief procedure qui compare le contenu de 2 tableaux
- * \param 2 tableaux
- * \param 1 entier : la taille des tableaux
+ * \brief compare 2 tab
+ * \param 2 tab
+ * \param 1 int : tab size
  */
-bool compare_tabs(int *pa, int *pb, int size)
+bool tabLibrary::compare_tabs(int *pa, int *pb, int size)
 {
     int i;
     bool result = true;
