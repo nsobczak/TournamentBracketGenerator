@@ -26,6 +26,8 @@ private:
     static bool Test_computeWinner();
 
 public:
+    Match();
+
     Match(const Competitor &competitorA, const Competitor &competitorB);
 
     const Competitor &getCompetitorA() const;
@@ -44,6 +46,8 @@ public:
 
     //methods
     void computeWinner();
+
+    static void printMatchArray(Match *pTab, int arraySize);
 
     //tests
     static void Test_MatchClass();

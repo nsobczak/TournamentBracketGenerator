@@ -5,6 +5,9 @@
 #include "Match.h"
 
 //____________________________________________________________
+Match::Match()
+{}
+
 Match::Match(const Competitor &competitorA, const Competitor &competitorB) : competitorA(competitorA),
                                                                              competitorB(competitorB)
 {
@@ -60,6 +63,16 @@ void Match::computeWinner()
         else
             this->winner = this->competitorB;
     }
+}
+
+
+void Match::printMatchArray(Match *pTab, int arraySize)
+{
+    //TODO:
+    std::cout << "|";
+    for (int i = 0; i < arraySize; ++i)
+        std::cout << "|" << pTab[i].competitorA.getPseudo() << " vs " << pTab[i].competitorB.getPseudo();
+    std::cout << "||" << std::endl;
 }
 
 

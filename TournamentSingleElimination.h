@@ -20,8 +20,10 @@ class TournamentSingleElimination
 {
 private:
     int playerNumber;
+    int matchNumber;
     bool isPlayerNumberOptimal;
     std::unique_ptr<int[]> playersIdArray;
+    std::unique_ptr<Match[]> matchArray;
 
     //tests
     static bool Test_IsPlayerNumberOptimal();
@@ -31,19 +33,21 @@ public:
 
     int getPlayerNumber() const;
 
+    int getMatchNumber() const;
+
     bool getIsPlayerNumberOptimal() const;
 
     void setIsPlayerNumberOptimal(bool isPlayerNumberOptimal);
 
     const std::unique_ptr<int[]> &getPlayersIdArray() const;
 
+    const std::unique_ptr<Match[]> &getMatchArray() const;
+
     //methods
     void generateTournament();
 
     //tests
     static bool IsPlayerNumberOptimal(int playerNumber);
-
-    static void Test_printArray();
 
     static void Test_generateTournament();
 

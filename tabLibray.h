@@ -11,6 +11,7 @@
 
 namespace tabLibrary
 {
+    // print a tab
     void printArray(int *pTab, int arraySize);
 
     // compare 2 tab

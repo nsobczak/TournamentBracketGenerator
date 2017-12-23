@@ -28,13 +28,15 @@ bool TournamentSingleElimination::IsPlayerNumberOptimal(int playerNumber)
 //____________________________________________________________
 
 TournamentSingleElimination::TournamentSingleElimination(int newPlayerNumber) : playerNumber{newPlayerNumber},
-                                                                                playersIdArray{new int[newPlayerNumber]}
+                                                                                matchNumber{playerNumber - 1},
+                                                                                playersIdArray{
+                                                                                        new int[playerNumber]},
+                                                                                matchArray{
+                                                                                        new Match[matchNumber]}
 {
     this->isPlayerNumberOptimal = IsPlayerNumberOptimal(newPlayerNumber);
     for (int i = 0; i < this->playerNumber; ++i)
-    {
         this->playersIdArray[i] = i;
-    }
 }
 
 
@@ -43,6 +45,12 @@ TournamentSingleElimination::TournamentSingleElimination(int newPlayerNumber) : 
 int TournamentSingleElimination::getPlayerNumber() const
 {
     return playerNumber;
+}
+
+
+int TournamentSingleElimination::getMatchNumber() const
+{
+    return matchNumber;
 }
 
 
@@ -64,6 +72,12 @@ const std::unique_ptr<int[]> &TournamentSingleElimination::getPlayersIdArray() c
 }
 
 
+const std::unique_ptr<Match[]> &TournamentSingleElimination::getMatchArray() const
+{
+    return matchArray;
+}
+
+
 //____________________________________________________________
 //____________________________________________________________
 // === Methods ===
@@ -75,6 +89,14 @@ void TournamentSingleElimination::generateTournament()
         //TODO:generate here
         std::random_shuffle(&this->playersIdArray[0],
                             &this->playersIdArray[this->playerNumber]);//std::begin(this->playersIdArray), std::end(this->playersIdArray)
+        //first matches = playerNumber / 2
+        tabLibrary::printArray(this->playersIdArray.get(), this->playerNumber);
+        for (int i = 0; i < playerNumber / 2; ++i)
+        {
+            this->matchArray[i] = Match(Competitor(std::to_string(this->playersIdArray[i * 2])),
+                                        Competitor(std::to_string(this->playersIdArray[i * 2 + 1])));
+        }
+        Match::printMatchArray(this->matchArray.get(), this->matchNumber);
     }
 }
 
@@ -94,15 +116,6 @@ bool TournamentSingleElimination::Test_IsPlayerNumberOptimal()
         return true;
     else
         return false;
-}
-
-
-void TournamentSingleElimination::Test_printArray()
-{
-    std::cout << "\n=== printArray ===" << std::endl;
-    TournamentSingleElimination tournamentSingleElimination(9);
-    tabLibrary::printArray(tournamentSingleElimination.getPlayersIdArray().get(),
-                           tournamentSingleElimination.getPlayerNumber());
 }
 
 
@@ -141,8 +154,6 @@ void TournamentSingleElimination::Test_TournamentSingleEliminationClass()
               << "||=======================================||" << std::endl;
 
     std::cout << (Test_IsPlayerNumberOptimal() == 1) << std::endl;
-
-//    Test_printArray();
 
     Test_generateTournament();
 }

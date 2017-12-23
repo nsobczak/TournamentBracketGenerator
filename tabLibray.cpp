@@ -5,6 +5,12 @@
 #include "tabLibray.h"
 
 
+/**
+ * \fn void tabLibrary::printArray(int *pTab, int arraySize)
+ * \brief print a tab
+ * \param 1 tab
+ * \param 1 int : tab size
+ */
 void tabLibrary::printArray(int *pTab, int arraySize)
 {
     std::cout << "|";
@@ -15,6 +21,7 @@ void tabLibrary::printArray(int *pTab, int arraySize)
 
 
 /**
+ * \fn bool tabLibrary::compare_tabs(int *pa, int *pb, int size)
  * \brief compare 2 tab
  * \param 2 tab
  * \param 1 int : tab size
