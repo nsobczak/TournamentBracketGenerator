@@ -117,20 +117,28 @@ void TournamentSingleElimination::Test_printArray()
 void TournamentSingleElimination::Test_generateTournament()
 {
     std::cout << "\n=== generateTournament ===" << std::endl;
+    bool test1, test2;
+
     TournamentSingleElimination tournament1(9);
     TournamentSingleElimination tournament1ref(9);
     tournament1.generateTournament();
-    //TODO: finish this part
-    std::cout << "\ntournament1 == tournament1ref : "
-              << (compare_tabs(tournament1.getPlayersIdArray().get(), tournament1ref.getPlayersIdArray().get(),
-                               tournament1.getPlayerNumber()))
-              << std::endl;;
+    test1 = compare_tabs(tournament1.getPlayersIdArray().get(), tournament1ref.getPlayersIdArray().get(),
+                         tournament1.getPlayerNumber()) == 1;
+//    std::cout << "test1: " << (test1 == 1) << std::endl;;
 
     TournamentSingleElimination tournament2(8);
     TournamentSingleElimination tournament2ref(8);
     tournament2.generateTournament();
-    tournament2.printArray();
-    tournament2ref.printArray();
+    test2 = compare_tabs(tournament2.getPlayersIdArray().get(), tournament2ref.getPlayersIdArray().get(),
+                         tournament2.getPlayerNumber()) == 0;
+//    std::cout << "test2: " << (test2 == 0) << std::endl;
+//    tournament2.printArray();
+//    tournament2ref.printArray();
+
+    if (test1 && test2)
+        std::cout << 1 << std::endl;
+    else
+        std::cout << 0 << std::endl;
 }
 
 
@@ -142,7 +150,7 @@ void TournamentSingleElimination::Test_TournamentSingleEliminationClass()
 
     std::cout << (Test_IsPlayerNumberOptimal() == 1) << std::endl;
 
-    Test_printArray();
+//    Test_printArray();
 
     Test_generateTournament();
 }
