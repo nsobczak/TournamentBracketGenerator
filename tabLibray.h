@@ -11,6 +11,8 @@
 
 namespace tabLibrary
 {
+    void printArray(int *pTab, int arraySize);
+
     // compare 2 tab
     bool compare_tabs(int *, int *, int);
 }

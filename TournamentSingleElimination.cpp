@@ -68,15 +68,6 @@ const std::unique_ptr<int[]> &TournamentSingleElimination::getPlayersIdArray() c
 //____________________________________________________________
 // === Methods ===
 
-void TournamentSingleElimination::printArray()
-{
-    std::cout << "|";
-    for (int i = 0; i < this->playerNumber; ++i)
-        std::cout << "|" << playersIdArray[i];
-    std::cout << "||" << std::endl;
-}
-
-
 void TournamentSingleElimination::generateTournament()
 {
     if (this->isPlayerNumberOptimal)
@@ -110,7 +101,8 @@ void TournamentSingleElimination::Test_printArray()
 {
     std::cout << "\n=== printArray ===" << std::endl;
     TournamentSingleElimination tournamentSingleElimination(9);
-    tournamentSingleElimination.printArray();
+    tabLibrary::printArray(tournamentSingleElimination.getPlayersIdArray().get(),
+                           tournamentSingleElimination.getPlayerNumber());
 }
 
 
@@ -123,17 +115,17 @@ void TournamentSingleElimination::Test_generateTournament()
     TournamentSingleElimination tournament1ref(9);
     tournament1.generateTournament();
     test1 = tabLibrary::compare_tabs(tournament1.getPlayersIdArray().get(), tournament1ref.getPlayersIdArray().get(),
-                         tournament1.getPlayerNumber()) == 1;
+                                     tournament1.getPlayerNumber()) == 1;
 //    std::cout << "test1: " << (test1 == 1) << std::endl;;
 
     TournamentSingleElimination tournament2(8);
     TournamentSingleElimination tournament2ref(8);
     tournament2.generateTournament();
     test2 = tabLibrary::compare_tabs(tournament2.getPlayersIdArray().get(), tournament2ref.getPlayersIdArray().get(),
-                         tournament2.getPlayerNumber()) == 0;
+                                     tournament2.getPlayerNumber()) == 0;
 //    std::cout << "test2: " << (test2 == 0) << std::endl;
-//    tournament2.printArray();
-//    tournament2ref.printArray();
+//    tabLibrary::printArray(tournament2.getPlayersIdArray().get(), tournament2.getPlayerNumber());
+//    tabLibrary::printArray(tournament2ref.getPlayersIdArray().get(), tournament2ref.getPlayerNumber());
 
     if (test1 && test2)
         std::cout << 1 << std::endl;

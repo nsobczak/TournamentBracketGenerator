@@ -40,8 +40,6 @@ public:
     //methods
     void generateTournament();
 
-    void printArray();
-
     //tests
     static bool IsPlayerNumberOptimal(int playerNumber);
 

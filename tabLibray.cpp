@@ -5,6 +5,15 @@
 #include "tabLibray.h"
 
 
+void tabLibrary::printArray(int *pTab, int arraySize)
+{
+    std::cout << "|";
+    for (int i = 0; i < arraySize; ++i)
+        std::cout << "|" << pTab[i];
+    std::cout << "||" << std::endl;
+}
+
+
 /**
  * \brief compare 2 tab
  * \param 2 tab
