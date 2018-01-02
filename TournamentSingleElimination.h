@@ -25,6 +25,9 @@ private:
     std::unique_ptr<int[]> playersIdArray;
     std::unique_ptr<Match[]> matchArray;
 
+    //methods
+    void linkMatches(int start, int mid, int end);
+
     //tests
     static bool Test_IsPlayerNumberOptimal();
 

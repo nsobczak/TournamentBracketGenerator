@@ -82,22 +82,56 @@ const std::unique_ptr<Match[]> &TournamentSingleElimination::getMatchArray() con
 //____________________________________________________________
 // === Methods ===
 
+
+void TournamentSingleElimination::linkMatches(int start, int mid, int end)
+{
+    if (end - mid < 2)
+    {
+        return;
+    } else
+    {
+        //TODO:link here
+//        this->matchArray[mid].setPreviousMatchA(&this->matchArray[start]);
+//        this->matchArray[mid].setPreviousMatchB(&this->matchArray[start + 1]);
+//
+//        this->matchArray[mid + 1].setPreviousMatchA(&this->matchArray[start + 2]);
+//        this->matchArray[mid + 1].setPreviousMatchB(&this->matchArray[start + 3]);
+//
+//        this->matchArray[mid + 2].setPreviousMatchA(&this->matchArray[start + 4]);
+//        this->matchArray[mid + 2].setPreviousMatchB(&this->matchArray[start + 5]);
+
+        int j = start;
+        for (int i = mid; i < end; ++i)
+        {
+            this->matchArray[i].setPreviousMatchA(&this->matchArray[j]);
+            this->matchArray[i].setPreviousMatchB(&this->matchArray[j + 1]);
+            j += 2;
+        }
+
+        this->linkMatches(mid, end, end + (end - mid) / 2);
+    }
+}
+
 void TournamentSingleElimination::generateTournament()
 {
     if (this->isPlayerNumberOptimal)
     {
         //TODO:generate here
-        //TODO:add match number to have links and order
+
         std::random_shuffle(&this->playersIdArray[0],
                             &this->playersIdArray[this->playerNumber]);//std::begin(this->playersIdArray), std::end(this->playersIdArray)
-
         tabLibrary::printArray(this->playersIdArray.get(), this->playerNumber);
+
         for (int i = 0; i < playerNumber / 2; ++i)  //first matches = playerNumber / 2
         {
             this->matchArray[i] = Match(Competitor(std::to_string(this->playersIdArray[i * 2])),
                                         Competitor(std::to_string(this->playersIdArray[i * 2 + 1])));
         }
         Match::printMatchArray(this->matchArray.get(), this->matchNumber);
+
+        //TODO:set previous matches to have links and order
+        this->linkMatches(0, this->getPlayerNumber(), this->getPlayerNumber() / 2);
+
     }
 }
 
