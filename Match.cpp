@@ -5,14 +5,17 @@
 #include "Match.h"
 
 //____________________________________________________________
-Match::Match()
-{}
+Match::Match() : previousMatchA{nullptr}, previousMatchB{nullptr}
+{
+}
 
 Match::Match(const Competitor &competitorA, const Competitor &competitorB) : competitorA(competitorA),
-                                                                             competitorB(competitorB)
+                                                                             competitorB(competitorB),
+                                                                             points_competitorA{0},
+                                                                             points_competitorB{0},
+                                                                             previousMatchA{nullptr},
+                                                                             previousMatchB{nullptr}
 {
-    this->points_competitorA = 0;
-    this->points_competitorB = 0;
 }
 
 
@@ -52,6 +55,27 @@ const Competitor &Match::getWinner() const
 }
 
 
+Match *Match::getPreviousMatchA() const
+{
+    return previousMatchA;
+}
+
+void Match::setPreviousMatchA(Match *previousMatchA)
+{
+    Match::previousMatchA = previousMatchA;
+}
+
+Match *Match::getPreviousMatchB() const
+{
+    return previousMatchB;
+}
+
+void Match::setPreviousMatchB(Match *previousMatchB)
+{
+    Match::previousMatchB = previousMatchB;
+}
+
+
 //____________________________________________________________
 
 void Match::computeWinner()
@@ -66,9 +90,18 @@ void Match::computeWinner()
 }
 
 
+void Match::updateMatchCompetitors()
+{
+    if (this->previousMatchA != nullptr && previousMatchA->getWinner().getPseudo() != "")
+        this->competitorA = previousMatchA->getWinner();
+
+    if (this->previousMatchB != nullptr && previousMatchB->getWinner().getPseudo() != "")
+        this->competitorB = previousMatchB->getWinner();
+}
+
+
 void Match::printMatchArray(Match *pTab, int arraySize)
 {
-    //TODO:
     std::cout << "|";
     for (int i = 0; i < arraySize; ++i)
         std::cout << "|" << pTab[i].competitorA.getPseudo() << " vs " << pTab[i].competitorB.getPseudo();
@@ -113,6 +146,51 @@ bool Match::Test_computeWinner()
 }
 
 
+bool Match::Test_updateMatchCompetitors()
+{
+    std::cout << "\n=== Test_updateMatchCompetitors ===" << std::endl;
+
+    Competitor p1("p1"), p2("p2");
+    Match matchA = Match(p1, p2);
+    matchA.points_competitorB += 2;
+    matchA.computeWinner();
+    //test nullptr
+    Match matchANext;
+    matchANext.updateMatchCompetitors();
+
+    Competitor p3("p3"), p4("p4");
+    Match matchB = Match(p3, p4);
+    matchB.points_competitorA += 2;
+    matchB.computeWinner();
+    //test add competitors
+    Match matchBNext;
+    matchBNext.setPreviousMatchA(&matchA);
+    matchBNext.setPreviousMatchB(&matchB);
+    matchBNext.updateMatchCompetitors();
+
+    Competitor p5("p5"), p6("p6");
+    Match matchC = Match(p5, p6);
+    matchC.points_competitorA += 1;
+    matchC.points_competitorB += 1;
+    matchC.computeWinner();
+    //test nullpseudo
+    Match matchCNext;
+    matchCNext.setPreviousMatchA(&matchA);
+    matchCNext.setPreviousMatchB(&matchC);
+    matchCNext.updateMatchCompetitors();
+
+    if (matchANext.competitorA.getPseudo() == "" &&
+        matchANext.competitorB.getPseudo() == "" &&
+        matchBNext.competitorA.getPseudo() == matchA.getWinner().getPseudo() &&
+        matchBNext.competitorB.getPseudo() == matchB.getWinner().getPseudo() &&
+        matchCNext.competitorA.getPseudo() == matchA.getWinner().getPseudo() &&
+        matchCNext.competitorB.getPseudo() == "")
+        return true;
+    else
+        return false;
+}
+
+
 void Match::Test_MatchClass()
 {
     std::cout << "\n||=================||" << std::endl
@@ -121,4 +199,7 @@ void Match::Test_MatchClass()
 
     std::cout << (Test_computeWinner() == 1) << std::endl;
 
+    std::cout << (Test_updateMatchCompetitors() == 1) << std::endl;
 }
+
+

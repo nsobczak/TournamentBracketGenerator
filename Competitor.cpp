@@ -5,15 +5,12 @@
 #include "Competitor.h"
 
 //____________________________________________________________
-Competitor::Competitor()
+Competitor::Competitor() : points{0}
 {
-    this->points = 0;
 }
 
-Competitor::Competitor(const std::string &pseudo) : pseudo(pseudo)
+Competitor::Competitor(const std::string &pseudo) : points{0}, pseudo{pseudo}
 {
-    this->points = 0;
-    this->pseudo = pseudo;
 }
 
 const std::string &Competitor::getPseudo() const

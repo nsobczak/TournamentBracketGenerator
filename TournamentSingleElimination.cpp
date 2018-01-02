@@ -87,11 +87,12 @@ void TournamentSingleElimination::generateTournament()
     if (this->isPlayerNumberOptimal)
     {
         //TODO:generate here
+        //TODO:add match number to have links and order
         std::random_shuffle(&this->playersIdArray[0],
                             &this->playersIdArray[this->playerNumber]);//std::begin(this->playersIdArray), std::end(this->playersIdArray)
-        //first matches = playerNumber / 2
+
         tabLibrary::printArray(this->playersIdArray.get(), this->playerNumber);
-        for (int i = 0; i < playerNumber / 2; ++i)
+        for (int i = 0; i < playerNumber / 2; ++i)  //first matches = playerNumber / 2
         {
             this->matchArray[i] = Match(Competitor(std::to_string(this->playersIdArray[i * 2])),
                                         Competitor(std::to_string(this->playersIdArray[i * 2 + 1])));

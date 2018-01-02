@@ -21,9 +21,14 @@ private:
     Competitor winner;
     int points_competitorA;
     int points_competitorB;
+    Match *previousMatchA;
+    Match *previousMatchB;
 
     //tests
     static bool Test_computeWinner();
+
+    static bool Test_updateMatchCompetitors();
+
 
 public:
     Match();
@@ -44,8 +49,18 @@ public:
 
     const Competitor &getWinner() const;
 
+    Match *getPreviousMatchA() const;
+
+    void setPreviousMatchA(Match *previousMatchA);
+
+    Match *getPreviousMatchB() const;
+
+    void setPreviousMatchB(Match *previousMatchB);
+
     //methods
     void computeWinner();
+
+    void updateMatchCompetitors();
 
     static void printMatchArray(Match *pTab, int arraySize);
 
