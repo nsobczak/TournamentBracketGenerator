@@ -54,6 +54,11 @@ const Competitor &Match::getWinner() const
     return winner;
 }
 
+void Match::setWinner(const Competitor &winner)
+{
+    Match::winner = winner;
+}
+
 
 Match *Match::getPreviousMatchA() const
 {
@@ -202,5 +207,6 @@ void Match::Test_MatchClass()
 
     std::cout << (Test_updateMatchCompetitors() == 1) << std::endl;
 }
+
 
 

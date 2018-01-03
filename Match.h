@@ -49,6 +49,8 @@ public:
 
     const Competitor &getWinner() const;
 
+    void setWinner(const Competitor &winner);
+
     Match *getPreviousMatchA() const;
 
     void setPreviousMatchA(Match *previousMatchA);

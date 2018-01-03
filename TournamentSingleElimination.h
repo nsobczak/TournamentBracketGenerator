@@ -31,6 +31,12 @@ private:
     //tests
     static bool Test_IsPlayerNumberOptimal();
 
+    static bool IsPlayerNumberOptimal(int playerNumber);
+
+    static bool Test_generateTournament();
+
+    static bool Test_updateTournamentProgress();
+
 public:
     TournamentSingleElimination(int newPlayerNumber);
 
@@ -49,11 +55,9 @@ public:
     //methods
     void generateTournament();
 
+    void updateTournamentProgress();
+
     //tests
-    static bool IsPlayerNumberOptimal(int playerNumber);
-
-    static void Test_generateTournament();
-
     static void Test_TournamentSingleEliminationClass();
 };
 
