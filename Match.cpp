@@ -104,7 +104,8 @@ void Match::printMatchArray(Match *pTab, int arraySize)
 {
     std::cout << "|";
     for (int i = 0; i < arraySize; ++i)
-        std::cout << "|" << pTab[i].competitorA.getPseudo() << " vs " << pTab[i].competitorB.getPseudo();
+        std::cout << "|" << "-" << pTab[i].previousMatchA << "-" << pTab[i].previousMatchB << "- "
+                  << pTab[i].competitorA.getPseudo() << " vs " << pTab[i].competitorB.getPseudo();
     std::cout << "||" << std::endl;
 }
 

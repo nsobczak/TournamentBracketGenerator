@@ -85,21 +85,10 @@ const std::unique_ptr<Match[]> &TournamentSingleElimination::getMatchArray() con
 
 void TournamentSingleElimination::linkMatches(int start, int mid, int end)
 {
-    if (end - mid < 2)
-    {
+    if (end - mid < 1)
         return;
-    } else
+    else
     {
-        //TODO:link here
-//        this->matchArray[mid].setPreviousMatchA(&this->matchArray[start]);
-//        this->matchArray[mid].setPreviousMatchB(&this->matchArray[start + 1]);
-//
-//        this->matchArray[mid + 1].setPreviousMatchA(&this->matchArray[start + 2]);
-//        this->matchArray[mid + 1].setPreviousMatchB(&this->matchArray[start + 3]);
-//
-//        this->matchArray[mid + 2].setPreviousMatchA(&this->matchArray[start + 4]);
-//        this->matchArray[mid + 2].setPreviousMatchB(&this->matchArray[start + 5]);
-
         int j = start;
         for (int i = mid; i < end; ++i)
         {
@@ -107,7 +96,6 @@ void TournamentSingleElimination::linkMatches(int start, int mid, int end)
             this->matchArray[i].setPreviousMatchB(&this->matchArray[j + 1]);
             j += 2;
         }
-
         this->linkMatches(mid, end, end + (end - mid) / 2);
     }
 }
@@ -127,10 +115,11 @@ void TournamentSingleElimination::generateTournament()
             this->matchArray[i] = Match(Competitor(std::to_string(this->playersIdArray[i * 2])),
                                         Competitor(std::to_string(this->playersIdArray[i * 2 + 1])));
         }
-        Match::printMatchArray(this->matchArray.get(), this->matchNumber);
+//        Match::printMatchArray(this->matchArray.get(), this->matchNumber);
 
-        //TODO:set previous matches to have links and order
-        this->linkMatches(0, this->getPlayerNumber(), this->getPlayerNumber() / 2);
+        //set previous matches to have links and order
+        this->linkMatches(0, this->getPlayerNumber() / 2, this->getPlayerNumber() / 2 + this->getPlayerNumber() / 4);
+        Match::printMatchArray(this->matchArray.get(), this->matchNumber);
 
     }
 }
@@ -157,25 +146,30 @@ bool TournamentSingleElimination::Test_IsPlayerNumberOptimal()
 void TournamentSingleElimination::Test_generateTournament()
 {
     std::cout << "\n=== generateTournament ===" << std::endl;
-    bool test1, test2;
+    bool test1, test2, test3;
 
     TournamentSingleElimination tournament1(9);
     TournamentSingleElimination tournament1ref(9);
     tournament1.generateTournament();
     test1 = tabLibrary::compare_tabs(tournament1.getPlayersIdArray().get(), tournament1ref.getPlayersIdArray().get(),
                                      tournament1.getPlayerNumber()) == 1;
-//    std::cout << "test1: " << (test1 == 1) << std::endl;;
+    std::cout << "\ntest1 (not optimal number): " << test1 << "\n" << std::endl;
 
     TournamentSingleElimination tournament2(8);
     TournamentSingleElimination tournament2ref(8);
     tournament2.generateTournament();
     test2 = tabLibrary::compare_tabs(tournament2.getPlayersIdArray().get(), tournament2ref.getPlayersIdArray().get(),
                                      tournament2.getPlayerNumber()) == 0;
-//    std::cout << "test2: " << (test2 == 0) << std::endl;
-//    tabLibrary::printArray(tournament2.getPlayersIdArray().get(), tournament2.getPlayerNumber());
-//    tabLibrary::printArray(tournament2ref.getPlayersIdArray().get(), tournament2ref.getPlayerNumber());
+    std::cout << "test2 (8 as optimal number): " << test2 << "\n"  << std::endl;
 
-    if (test1 && test2)
+    TournamentSingleElimination tournament3(16);
+    TournamentSingleElimination tournament3ref(16);
+    tournament3.generateTournament();
+    test3 = tabLibrary::compare_tabs(tournament3.getPlayersIdArray().get(), tournament3ref.getPlayersIdArray().get(),
+                                     tournament3.getPlayerNumber()) == 0;
+    std::cout << "test3 (16 as optimal number): " << test3 << "\n"  << std::endl;
+
+    if (test1 && test2 && test3)
         std::cout << 1 << std::endl;
     else
         std::cout << 0 << std::endl;
