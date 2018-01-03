@@ -64,7 +64,7 @@ public:
 
     void updateMatchCompetitors();
 
-    static void printMatchArray(Match *pTab, int arraySize);
+    static void printMatchArray(Match *pTab, int arraySize, bool withPreviousMatch = 0);
 
     //tests
     static void Test_MatchClass();

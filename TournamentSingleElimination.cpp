@@ -107,7 +107,7 @@ void TournamentSingleElimination::generateTournament()
         //shuffle and generate here
         std::random_shuffle(&this->playersIdArray[0],
                             &this->playersIdArray[this->playerNumber]);//std::begin(this->playersIdArray), std::end(this->playersIdArray)
-        tabLibrary::printArray(this->playersIdArray.get(), this->playerNumber);
+//        tabLibrary::printArray(this->playersIdArray.get(), this->playerNumber);
 
         for (int i = 0; i < playerNumber / 2; ++i)  //first matches = playerNumber / 2
         {
@@ -117,7 +117,7 @@ void TournamentSingleElimination::generateTournament()
 
         //set previous matches to have links and order
         this->linkMatches(0, this->getPlayerNumber() / 2, this->getPlayerNumber() / 2 + this->getPlayerNumber() / 4);
-        Match::printMatchArray(this->matchArray.get(), this->matchNumber);
+//        Match::printMatchArray(this->matchArray.get(), this->matchNumber, 0);
 
     }
 }
@@ -125,14 +125,10 @@ void TournamentSingleElimination::generateTournament()
 
 void TournamentSingleElimination::updateTournamentProgress()
 {
-    //TODO: update tournament matches
     if (this->isPlayerNumberOptimal)
     {
         for (int i = this->getPlayerNumber() / 2; i < this->getMatchNumber(); ++i)
-        {
-            std::cout << i << std::endl;
             this->getMatchArray()[i].updateMatchCompetitors();
-        }
     }
 }
 
@@ -160,6 +156,7 @@ bool TournamentSingleElimination::Test_generateTournament()
     std::cout << "\n=== generateTournament ===" << std::endl;
     bool test1, test2, test3;
 
+    // === test 1 ===
     TournamentSingleElimination tournament1(9);
     TournamentSingleElimination tournament1ref(9);
     tournament1.generateTournament();
@@ -167,6 +164,7 @@ bool TournamentSingleElimination::Test_generateTournament()
                                      tournament1.getPlayerNumber()) == 1;
     std::cout << "\ntest1 (not optimal number): " << test1 << "\n" << std::endl;
 
+    // === test 2 ===
     TournamentSingleElimination tournament2(8);
     TournamentSingleElimination tournament2ref(8);
     tournament2.generateTournament();
@@ -174,6 +172,7 @@ bool TournamentSingleElimination::Test_generateTournament()
                                      tournament2.getPlayerNumber()) == 0;
     std::cout << "test2 (8 as optimal number): " << test2 << "\n" << std::endl;
 
+    // === test 3 ===
     TournamentSingleElimination tournament3(16);
     TournamentSingleElimination tournament3ref(16);
     tournament3.generateTournament();
@@ -181,6 +180,7 @@ bool TournamentSingleElimination::Test_generateTournament()
                                      tournament3.getPlayerNumber()) == 0;
     std::cout << "test3 (16 as optimal number): " << test3 << "\n" << std::endl;
 
+    // === final ===
     if (test1 && test2 && test3)
         return 1;
     else
@@ -191,25 +191,48 @@ bool TournamentSingleElimination::Test_generateTournament()
 bool TournamentSingleElimination::Test_updateTournamentProgress()
 {
     std::cout << "\n=== updateTournamentProgress ===" << std::endl;
+    bool test1, test2;
 
-    TournamentSingleElimination tournament1(7);
+    // === test 1 ===
+    TournamentSingleElimination tournament1(5);
     tournament1.generateTournament();
     tournament1.updateTournamentProgress();
+    test1 = true;
+    for (int i = 0; i < tournament1.getMatchNumber(); ++i)
+    {
+        if (tournament1.getMatchArray()[i].getCompetitorA().getPseudo() != "" ||
+            tournament1.getMatchArray()[i].getCompetitorB().getPseudo() != "")
+            test1 = false;
+    }
+    std::cout << "test1: " << test1 << "\n" << std::endl;
 
-    //TODO
+    // === test 2 ===
     TournamentSingleElimination tournament2(8);
     tournament2.generateTournament();
     tournament2.getMatchArray()[0].setWinner(tournament2.getMatchArray()[0].getCompetitorA());
-    std::cout << "getMatchArray()[0], winner: " << tournament2.getMatchArray()[0].getWinner().getPseudo() << std::endl;
     tournament2.getMatchArray()[1].setWinner(tournament2.getMatchArray()[1].getCompetitorB());
-    std::cout << "getMatchArray()[1], winner: " << tournament2.getMatchArray()[1].getWinner().getPseudo() << std::endl;
+    tournament2.getMatchArray()[2].setWinner(tournament2.getMatchArray()[2].getCompetitorB());
     tournament2.updateTournamentProgress();
+    Match::printMatchArray(tournament2.getMatchArray().get(), tournament2.getMatchNumber());
 
+    test2 = (tournament2.getMatchArray()[4].getCompetitorA().getPseudo() != "" &&
+             tournament2.getMatchArray()[4].getCompetitorB().getPseudo() != "" &&
+             tournament2.getMatchArray()[5].getCompetitorA().getPseudo() != "" &&
+             tournament2.getMatchArray()[5].getCompetitorB().getPseudo() == "");
+    std::cout << "test2: " << test2 << "\n" << std::endl;
+
+
+    //TODO: see if test 3 is useful
+    // === test 3 ===
 //    TournamentSingleElimination tournament3(16);
 //    tournament3.generateTournament();
 //    tournament3.updateTournamentProgress();
 
-    return 1;
+    // === final ===
+    if (test1 && test2)
+        return 1;
+    else
+        return 0;
 }
 
 
