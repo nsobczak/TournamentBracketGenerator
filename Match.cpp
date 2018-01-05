@@ -82,7 +82,10 @@ void Match::setPreviousMatchB(Match *previousMatchB)
 
 
 //____________________________________________________________
-
+/**
+ * \fn void Match::computeWinner()
+ * \brief set winner with competitors' points
+ */
 void Match::computeWinner()
 {
     if (this->points_competitorA != this->points_competitorB)
@@ -95,6 +98,10 @@ void Match::computeWinner()
 }
 
 
+/**
+ * \fn void Match::updateMatchCompetitors()
+ * \brief set match competitor if winner is available
+ */
 void Match::updateMatchCompetitors()
 {
     if (this->previousMatchA != nullptr && previousMatchA->getWinner().getPseudo() != "")
@@ -105,6 +112,13 @@ void Match::updateMatchCompetitors()
 }
 
 
+/**
+ * \fn void Match::printMatchArray(Match *pTab, int arraySize, bool withPreviousMatch)
+ * \param Match *pTab
+ * \param int arraySize
+ * \param bool withPreviousMatch
+ * \brief print matchArray
+ */
 void Match::printMatchArray(Match *pTab, int arraySize, bool withPreviousMatch)
 {
     std::cout << "|";

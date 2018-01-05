@@ -9,7 +9,11 @@
 
 
 //____________________________________________________________
-
+/**
+ * \fn bool TournamentSingleElimination::IsPlayerNumberOptimal(int playerNumber)
+ * \param int playerNumber
+ * \brief evaluate number and tell if it is optimal for tournament or not
+ */
 bool TournamentSingleElimination::IsPlayerNumberOptimal(int playerNumber)
 {
     int optimalNumber = 2;
@@ -82,7 +86,13 @@ const std::unique_ptr<Match[]> &TournamentSingleElimination::getMatchArray() con
 //____________________________________________________________
 // === Methods ===
 
-
+/**
+ * \fn void TournamentSingleElimination::linkMatches(int start, int mid, int end)
+ * \param int start:
+ * \param int mid:
+ * \param int end:
+ * \brief tell wich match from matchArray array is the next match for each winner
+ */
 void TournamentSingleElimination::linkMatches(int start, int mid, int end)
 {
     if (end - mid < 1)
@@ -100,6 +110,11 @@ void TournamentSingleElimination::linkMatches(int start, int mid, int end)
     }
 }
 
+
+/**
+ * \fn void TournamentSingleElimination::generateTournament()
+ * \brief initialize matchArray with players randomly sorted
+ */
 void TournamentSingleElimination::generateTournament()
 {
     if (this->isPlayerNumberOptimal)
@@ -123,6 +138,10 @@ void TournamentSingleElimination::generateTournament()
 }
 
 
+/**
+ * \fn void TournamentSingleElimination::updateTournamentProgress()
+ * \brief add competitors to each match from matchArray when winner is available
+ */
 void TournamentSingleElimination::updateTournamentProgress()
 {
     if (this->isPlayerNumberOptimal)
@@ -225,7 +244,7 @@ bool TournamentSingleElimination::Test_updateTournamentProgress()
     TournamentSingleElimination tournament3(16);
     tournament3.generateTournament();
     tournament3.updateTournamentProgress();
-    Match::printMatchArray(tournament3.getMatchArray().get(), tournament3.getMatchNumber());
+//    Match::printMatchArray(tournament3.getMatchArray().get(), tournament3.getMatchNumber());
     tournament3.getMatchArray()[0].setWinner(tournament3.getMatchArray()[0].getCompetitorA());
     tournament3.getMatchArray()[1].setWinner(tournament3.getMatchArray()[1].getCompetitorB());
     tournament3.getMatchArray()[2].setWinner(tournament3.getMatchArray()[2].getCompetitorB());

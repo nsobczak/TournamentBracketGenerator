@@ -10,7 +10,7 @@
 
 /**
  * \class Match
- * \brief match class, 2 players, their scores, 1 winner
+ * \brief match class, 2 competitors, their scores, 1 winner, 2 previous matches
  */
 class Match
 {

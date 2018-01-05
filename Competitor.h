@@ -9,7 +9,7 @@
 
 /**
  * \class Competitor
- * \brief competitor class, a pseudo, its points count
+ * \brief competitor class, competitor's pseudo, point count
  */
 class Competitor
 {
