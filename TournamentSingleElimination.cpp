@@ -191,7 +191,7 @@ bool TournamentSingleElimination::Test_generateTournament()
 bool TournamentSingleElimination::Test_updateTournamentProgress()
 {
     std::cout << "\n=== updateTournamentProgress ===" << std::endl;
-    bool test1, test2;
+    bool test1, test2, test3;
 
     // === test 1 ===
     TournamentSingleElimination tournament1(5);
@@ -221,15 +221,30 @@ bool TournamentSingleElimination::Test_updateTournamentProgress()
              tournament2.getMatchArray()[5].getCompetitorB().getPseudo() == "");
     std::cout << "test2: " << test2 << "\n" << std::endl;
 
-
-    //TODO: see if test 3 is useful
     // === test 3 ===
-//    TournamentSingleElimination tournament3(16);
-//    tournament3.generateTournament();
-//    tournament3.updateTournamentProgress();
+    TournamentSingleElimination tournament3(16);
+    tournament3.generateTournament();
+    tournament3.updateTournamentProgress();
+    Match::printMatchArray(tournament3.getMatchArray().get(), tournament3.getMatchNumber());
+    tournament3.getMatchArray()[0].setWinner(tournament3.getMatchArray()[0].getCompetitorA());
+    tournament3.getMatchArray()[1].setWinner(tournament3.getMatchArray()[1].getCompetitorB());
+    tournament3.getMatchArray()[2].setWinner(tournament3.getMatchArray()[2].getCompetitorB());
+    tournament3.getMatchArray()[9].setWinner(tournament3.getMatchArray()[2].getCompetitorA());
+    tournament3.updateTournamentProgress();
+    Match::printMatchArray(tournament3.getMatchArray().get(), tournament3.getMatchNumber());
+
+    test3 = (tournament3.getMatchArray()[8].getCompetitorA().getPseudo() != "" &&
+             tournament3.getMatchArray()[8].getCompetitorB().getPseudo() != "" &&
+             tournament3.getMatchArray()[9].getCompetitorA().getPseudo() != "" &&
+             tournament3.getMatchArray()[9].getCompetitorB().getPseudo() == "" &&
+             tournament3.getMatchArray()[10].getCompetitorA().getPseudo() == "" &&
+             tournament3.getMatchArray()[11].getCompetitorA().getPseudo() == "" &&
+             tournament3.getMatchArray()[12].getCompetitorB().getPseudo() != "");
+    std::cout << "test3: " << test3 << "\n" << std::endl;
+
 
     // === final ===
-    if (test1 && test2)
+    if (test1 && test2 && test3)
         return 1;
     else
         return 0;
